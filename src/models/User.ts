@@ -10,4 +10,8 @@ export class User {
     get(propName: keyof UserProps): (number | string) {
         return this.data[propName];
     }
+
+    set(update: UserProps): void {
+        Object.assign(this.data, update);
+    }
 }
