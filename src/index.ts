@@ -8,3 +8,6 @@ console.log(user.get('age'));  // Output: 30\
 user.set({ name: 'Jane Doe', age: 25 });
 console.log(user.get('name')); // Output: Jane Doe
 console.log(user.get('age'));  // Output: 25
+
+user.set({ name: 'Alice'});
+console.log(user.get('name')); // Output: Alice

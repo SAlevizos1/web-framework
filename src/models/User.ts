@@ -11,7 +11,7 @@ export class User {
         return this.data[propName];
     }
 
-    set(update: UserProps): void {
+    set(update: Partial<UserProps>): void {
         Object.assign(this.data, update);
     }
 }
