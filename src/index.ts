@@ -2,12 +2,15 @@ import { User } from './models/User';
 
 const user = new User({ name: 'John Doe', age: 30 });
 
-console.log(user.get('name')); // Output: John Doe
-console.log(user.get('age'));  // Output: 30\
+user.on('change', () => {
+    console.log('User data changed');
+});
 
-user.set({ name: 'Jane Doe', age: 25 });
+user.on('change', () => {
+    console.log('Another change handler');
+});
+
+user.set({ name: 'Jane Doe' });
+
+user.trigger('change'); // Output: User data changed
 console.log(user.get('name')); // Output: Jane Doe
-console.log(user.get('age'));  // Output: 25
-
-user.set({ name: 'Alice'});
-console.log(user.get('name')); // Output: Alice

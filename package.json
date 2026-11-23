@@ -6,5 +6,8 @@
   "scripts": {
     "start": "parcel index.html",
     "build": "parcel build index.html"
+  },
+  "dependencies": {
+    "json-server": "^0.17.4"
   }
 }
