@@ -1,16 +1,10 @@
 import { User } from './models/User';
 
-const user = new User({ name: 'John Doe', age: 30 });
+const user = new User({ name: 'John Doe', age: 30, id: 2 });
 
-user.on('change', () => {
-    console.log('User data changed');
-});
+async function main() {
+    const data = await user.fetch();
+    console.log(data);
+}
 
-user.on('change', () => {
-    console.log('Another change handler');
-});
-
-user.set({ name: 'Jane Doe' });
-
-user.trigger('change'); // Output: User data changed
-console.log(user.get('name')); // Output: Jane Doe
+main();
