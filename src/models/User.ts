@@ -18,4 +18,39 @@ export class User {
     constructor(attrs: UserProps) {
         this.attributes = new Attributes<UserProps>(attrs);
     }
+
+    get on()  {
+        return this.events.on;
+    }
+
+    get trigger() {
+        return this.events.trigger;
+    }
+
+    get get() {
+        return this.attributes.get;
+    }
+
+    set(update: Partial<UserProps>): void {
+        this.attributes.set(update);
+        this.events.trigger('change');
+    }
+
+    fetch(): Promise<void> {
+        const id = this.attributes.get('id');
+        this.sync.fetch(id).then((response: UserProps) => {
+            this.set(response);
+        });
+
+        return Promise.resolve();
+    }
+
+    save(): Promise<void> {
+        return this.sync.save(this.attributes.getAll()).then((response: UserProps) => {
+            this.trigger('save');
+        })
+        .catch((error: Error) => {
+            this.trigger('error');
+        });
+    }
 }

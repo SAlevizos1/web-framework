@@ -1,10 +1,13 @@
 import { User } from './models/User';
 
-const user = new User({ name: 'Alev Stav', age: 36, id: 1234 });
+const user = new User({ name: 'Stav alev', age: 36, id: 4321 });
 
 async function main() {
-    const data = await user.sync.save(user.attributes.getAll());
-    console.log(user.attributes.getAll());
+   user.on('save', () => {
+      console.log('User was saved');
+   });
+
+   await user.save();
 }
 
 main();

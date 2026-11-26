@@ -5,7 +5,7 @@ export class Attributes<T extends object> {
         return { ...this.data };
     }
 
-    get<K extends keyof T>(propName: K): T[K] {
+    get = <K extends keyof T>(propName: K): T[K] => {
         if (!this.data[propName]) {
             throw new Error(`Property ${String(propName)} does not exist on Attributes`);
         }
