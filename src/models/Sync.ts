@@ -12,11 +12,10 @@ export class Sync<T extends HasId> {
     }
 
     async save(data: T): Promise<T> {
-        const id = data.id;
-        const url = id ? `${this.rootUrl}/${id}` : `${this.rootUrl}`;
+        const url = `${this.rootUrl}`;
 
         const response = await globalThis.fetch(url, {
-            method: id ? 'PUT' : 'POST',
+            method: 'POST',
             body: JSON.stringify(data),
             headers: { 'Content-Type': 'application/json' },
         });
